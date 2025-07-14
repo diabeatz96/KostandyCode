@@ -1,17 +1,18 @@
 ---
 import Navbar from "../components/Navbar.astro";
-const announcement = "Welcome to KostandyCode! Fall 2025 semester begins August 26th. Check back for updates!";
 import Layout from "../layouts/Layout.astro";
+import AnnouncementWrapper from "../components/AnnouncementWrapper.astro";
+import Content from "../pages/announcements/announcement_1.md"
 ---
 
 <Layout>
 <div class="jrpg-center-screen">
   <Navbar />
   <div class="jrpg-window p-8">
-    <h1 class="text-3xl text-blue-100 font-bold text-center mb-6 tracking-widest drop-shadow">KostandyCode</h1>
-    <div class="jrpg-announcement mb-8">
-      <span class="font-bold text-blue-200">Announcement:</span>
-      <span class="ml-2">{announcement}</span>
+    <h1 class="text-3xl text-blue-100 font-bold text-center mb-6 tracking-widest drop-shadow">Professor Kostandy Class Announcements</h1>
+    <AnnouncementWrapper>
+		<Content />
+	</AnnouncementWrapper>	
     </div>
   </div>
 </div>
@@ -53,4 +54,5 @@ import Layout from "../layouts/Layout.astro";
   margin-bottom: 1em;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
+
 </style>

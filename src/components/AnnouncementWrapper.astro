@@ -1,0 +1,52 @@
+---
+const { children } = Astro.props;
+---
+
+<div class="announcement-wrapper">
+  <div class="announcement-header">
+    <span class="announcement-icon">📢</span>
+    <span class="announcement-title">Announcement</span>
+  </div>
+  <div class="announcement-content">
+    {children}
+  </div>
+</div>
+
+<style>
+.announcement-wrapper {
+  background: linear-gradient(100deg, #3c4e7c 0%, #223a6d 100%);
+  border: 3px solid #ffe066;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  padding: 2em 1.5em;
+  margin-bottom: 2em;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.announcement-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.announcement-icon {
+  font-size: 1.5em;
+  margin-right: 0.5em;
+}
+
+.announcement-title {
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  color: #ffe066;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+}
+
+.announcement-content {
+  color: #fffbe6;
+  font-size: 1.1em;
+  line-height: 1.7;
+  font-family: 'Fira Mono', monospace;
+}
+</style>
