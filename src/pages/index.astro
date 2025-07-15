@@ -2,7 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
 import AnnouncementWrapper from "../components/AnnouncementWrapper.astro";
-import Content from "../pages/announcements/announcement_1.md"
+import { Content } from "../pages/announcements/announcement_1.md"
 ---
 
 <Layout>
@@ -10,9 +10,11 @@ import Content from "../pages/announcements/announcement_1.md"
   <Navbar />
   <div class="jrpg-window p-8">
     <h1 class="text-3xl text-blue-100 font-bold text-center mb-6 tracking-widest drop-shadow">Professor Kostandy Class Announcements</h1>
-    <AnnouncementWrapper>
-		<Content />
-	</AnnouncementWrapper>	
+    <div class="jrpg-announcement mb-8">
+      <span class="font-bold text-blue-200">Announcement:</span>
+	  <AnnouncementWrapper>
+      <Content />
+	  </AnnouncementWrapper>
     </div>
   </div>
 </div>
@@ -54,5 +56,4 @@ import Content from "../pages/announcements/announcement_1.md"
   margin-bottom: 1em;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
-
 </style>
