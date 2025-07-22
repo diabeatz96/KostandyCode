@@ -1,0 +1,109 @@
+---
+const { name, title, description, image, link, type } = Astro.props;
+---
+<div class="project-card">
+  <a href={link} target="_blank" rel="noopener" class="project-image-link">
+    <img src={image} alt={title} class="project-image" />
+  </a>
+  <div class="project-info">
+    <h3 class="project-title">{title}</h3>
+    <p class="student-name">{name}</p>
+    <p class="project-type">{type}</p>
+    <p class="project-desc">{description}</p>
+    <a href={link} class="project-link" target="_blank" rel="noopener">View Project</a>
+  </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: linear-gradient(120deg, #232946 60%, #223a6d 100%);
+  border: 3px solid #ffe066;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 12px #ffe06633;
+  padding: 1.2em 1em 1.5em 1em;
+  transition: transform 0.13s, box-shadow 0.13s;
+  min-width: 220px;
+  min-height: 340px;
+  max-width: 320px;
+  margin: 0 auto;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.project-card:hover, .project-card:focus-within {
+  transform: scale(1.045) translateY(-4px);
+  box-shadow: 0 8px 32px #ffe06655, 0 0 24px #ffe06633;
+  z-index: 2;
+}
+.project-image-link {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 0.7em;
+  box-shadow: 0 2px 8px #0006;
+  transition: box-shadow 0.13s;
+}
+.project-card:hover .project-image-link,
+.project-card:focus-within .project-image-link {
+  box-shadow: 0 4px 16px #ffe06677, 0 0 12px #ffe06633;
+}
+.project-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #1a2540;
+  transition: filter 0.13s;
+}
+.project-title {
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  color: #ffe066;
+  font-size: 1.1em;
+  margin: 0.5em 0 0.2em 0;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-shadow: 1px 1px 0 #2e3e5c, 0 0 6px #ffe06688;
+}
+.student-name {
+  font-size: 0.98em;
+  color: #b6c6e2;
+  margin-bottom: 0.2em;
+  text-align: center;
+}
+.project-type {
+  font-size: 0.95em;
+  color: #ffe066;
+  margin-bottom: 0.3em;
+  text-align: center;
+  font-family: 'Fira Mono', monospace;
+}
+.project-desc {
+  color: #e0e6f8;
+  font-size: 1em;
+  margin-bottom: 0.7em;
+  text-align: center;
+  font-family: 'Fira Mono', monospace;
+}
+.project-link {
+  color: #ffe066;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: 0.5em;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.08em;
+  border-radius: 6px;
+  padding: 0.3em 1em;
+  background: rgba(255,224,102,0.08);
+  transition: background 0.13s, color 0.13s;
+}
+.project-link:hover, .project-link:focus {
+  background: #ffe066;
+  color: #232946;
+}
+</style>

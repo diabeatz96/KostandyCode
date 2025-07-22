@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import projects from '../data/projects.js';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const pageSize = 6;
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const paginated = projects.slice((page - 1) * pageSize, page * pageSize);
+
+// Get unique types for filtering
+const types = Array.from(new Set(projects.map(p => p.type)));
+const selectedType = Astro.url.searchParams.get('type') || '';
+const filteredProjects = selectedType ? projects.filter(p => p.type === selectedType) : projects;
+const filteredPaginated = filteredProjects.slice((page - 1) * pageSize, page * pageSize);
+const filteredTotalPages = Math.ceil(filteredProjects.length / pageSize);
+---
+
+
+// ...existing code...
+
+<Layout>
+  <div class="jrpg-center-screen">
+    <Navbar />
+    <main id="main-content" tabindex="-1">
+      <div class="jrpg-window p-8 jrpg-grid-bg">
+  <h1 class="jrpg-title">KostandyCode</h1>
+  <h2 class="jrpg-subtitle">Student Projects</h2>
+        <div class="project-filters mb-6">
+          <form method="get" class="jrpg-filter-form">
+            <label for="type">Filter by Type:</label>
+            <select name="type" id="type" onchange="this.form.submit()" class="jrpg-filter-select">
+              <option value="">All</option>
+              {types.map(type => (
+                <option value={type} selected={type === selectedType}>{type}</option>
+              ))}
+            </select>
+          </form>
+        </div>
+        {filteredProjects.length === 0 ? (
+          <div class="no-projects">No projects to display.</div>
+        ) : (
+          <>
+            <div class="jrpg-grid-bg">
+              <div class="project-grid">
+                {filteredPaginated.map(project => (
+                  <ProjectCard {...project} />
+                ))}
+              </div>
+            </div>
+            <nav class="jrpg-pagination" aria-label="Project Pagination">
+              {Array.from({ length: filteredTotalPages }).map((_, i) => (
+                <a
+                  href={`?type=${selectedType}&page=${i + 1}`}
+                  class={i + 1 === page ? 'active' : ''}
+                  aria-current={i + 1 === page ? 'page' : undefined}
+                  tabindex="0"
+                >
+                  <span class="hand"></span>{i + 1}
+                </a>
+              ))}
+            </nav>
+          </>
+        )}
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<style>
+/* Navbar width fix */
+.jrpg-menubar {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* JRPG-style background for the project grid */
+.jrpg-title {
+  font-size: 2.2rem;
+  color: #ffe066;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px #ffe066, 0 0 2px #232946, 2px 2px 0 #2e3e5c;
+  border: 2px solid #b6c6e2;
+  border-radius: 12px;
+  background: #232946;
+  box-shadow: 0 0 0 4px #2e3e5c, 0 8px 32px 0 rgba(0,0,0,0.45);
+  padding: 1.2em 0.5em 1em 0.5em;
+  animation: jrpg-pop 0.5s steps(2, end);
+}
+.jrpg-subtitle {
+  font-size: 1.3rem;
+  color: #ffe066;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 6px #ffe066, 0 0 2px #232946;
+}
+@keyframes jrpg-pop {
+  0% { opacity: 0; filter: blur(8px); transform: scale(0.9); }
+  60% { opacity: 1; filter: blur(0); transform: scale(1.05); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+.jrpg-grid-bg {
+  background: linear-gradient(180deg, #223a6d 0%, #1a2540 100%);
+  border: 2px solid #b6c6e2;
+  border-radius: 18px;
+  box-shadow: 0 0 0 4px #2e3e5c, 0 8px 32px 0 rgba(0,0,0,0.45);
+  padding: 2em 1em;
+  margin-bottom: 2em;
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: box-shadow 0.12s steps(2, end), border 0.12s steps(2, end);
+}
+
+/* Project grid: 3x3 on PC, 1x1 on mobile */
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 2em;
+  max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.project-card {
+  flex: 1 1 28%;
+  max-width: 32%;
+  min-width: 260px;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .project-card {
+    flex-basis: 45%;
+    max-width: 48%;
+  }
+}
+@media (max-width: 600px) {
+  .project-card {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+.project-filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5em;
+}
+.jrpg-filter-form label {
+  color: #ffe066;
+  font-weight: bold;
+  margin-right: 0.5em;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+}
+.jrpg-filter-select {
+  margin-left: 0.5em;
+  padding: 0.3em 0.7em;
+  border-radius: 6px;
+  border: 2px solid #b6c6e2;
+  background: #232946;
+  color: #ffe066 !important;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  font-size: 1em;
+  transition: border 0.08s steps(2, end), box-shadow 0.08s steps(2, end);
+}
+.jrpg-filter-select:focus {
+  border-color: #ffe066;
+  box-shadow: 0 0 0 2px #b6c6e2;
+  outline: none;
+}
+.jrpg-filter-select option {
+  background: #232946;
+  color: #ffe066;
+}
+.jrpg-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+}
+.jrpg-pagination a {
+  background: #232946;
+  color: #ffe066;
+  padding: 0.5em 1.2em;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  border: 2px solid #b6c6e2;
+  box-shadow: 0 0 0 2px #2e3e5c;
+  outline: none;
+  display: flex;
+  align-items: center;
+  transition: filter 0.08s steps(2, end), box-shadow 0.08s steps(2, end), border 0.08s steps(2, end), background 0.08s steps(2, end), color 0.08s steps(2, end), transform 0.08s steps(2, end);
+}
+.jrpg-pagination a .hand {
+  display: none;
+  margin-right: 0.7em;
+  font-size: 1.2em;
+  transition: opacity 0.08s steps(2, end);
+}
+.jrpg-pagination a:hover .hand,
+.jrpg-pagination a:focus .hand {
+  display: inline;
+  opacity: 1;
+}
+.jrpg-pagination a .hand::before {
+  content: "👉";
+  display: inline-block;
+}
+.jrpg-pagination a:focus-visible {
+  outline: 2px solid #ffe066;
+  outline-offset: 2px;
+}
+.jrpg-pagination a.active,
+.jrpg-pagination a:hover {
+  background: #ffe066;
+  color: #232946;
+  border-color: #b6c6e2;
+  filter: drop-shadow(0 0 8px #ffe066) contrast(1.2);
+  box-shadow: 0 0 0 4px #b6c6e2;
+  transform: scale(1.08) skew(-1deg, 0.5deg);
+}
+.jrpg-pagination a:active {
+  filter: brightness(1.2) contrast(1.4) drop-shadow(0 0 12px #ffe066);
+  box-shadow: 0 0 0 6px #b6c6e2;
+  border-color: #b6c6e2;
+}
+@media (max-width: 600px) {
+  .jrpg-window, .jrpg-grid-bg {
+    padding: 1em 0.5em;
+    border-width: 2px;
+  }
+  .project-grid {
+    gap: 0.5em;
+  }
+}
+.no-projects {
+  text-align: center;
+  color: #b6c6e2;
+  font-size: 1.2em;
+  margin: 2em 0;
+}
+/* Reuse your JRPG styles for .jrpg-center-screen, .jrpg-window, etc. */
+</style>

@@ -1,0 +1,107 @@
+---
+import Navbar from "../../components/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="jrpg-center-screen">
+    <Navbar />
+    <div class="jrpg-window p-8 max-w-2xl mx-auto mt-8">
+  <h1 class="jrpg-title">CSC 126: Introduction to Computer Science</h1>
+  <p class="jrpg-desc">CSC 126 is an introductory programming course covering the basics of algorithms, problem solving, and Python programming. Taught in Spring 2025.</p>
+  <a href="https://catalog.example.edu/courses/csc126" class="jrpg-catalog-link" target="_blank" rel="noopener"><span class="hand"></span>View Course Catalog</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.jrpg-title {
+  font-size: 2.2rem;
+  color: #ffe066;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px #ffe066, 0 0 2px #232946, 2px 2px 0 #2e3e5c;
+  border: 4px solid #ffe066;
+  border-radius: 12px;
+  background: #232946;
+  box-shadow: 0 0 0 4px #2e3e5c, 0 8px 32px 0 rgba(0,0,0,0.45);
+  padding: 1.2em 0.5em 1em 0.5em;
+  animation: jrpg-pop 0.5s steps(2, end);
+}
+@keyframes jrpg-pop {
+  0% { opacity: 0; filter: blur(8px); transform: scale(0.9); }
+  60% { opacity: 1; filter: blur(0); transform: scale(1.05); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+.jrpg-desc {
+  color: #e0e6f8;
+  font-size: 1.1em;
+  line-height: 1.7;
+  font-family: 'Fira Mono', monospace;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+.jrpg-catalog-link {
+  display: inline-flex;
+  align-items: center;
+  color: #ffe066;
+  font-family: 'Press Start 2P', 'Fira Mono', monospace;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  border: 3px solid #ffe066;
+  background: #232946;
+  border-radius: 8px;
+  padding: 0.8em 1.5em;
+  box-shadow: 0 0 0 2px #2e3e5c;
+  margin-top: 1em;
+  transition: filter 0.08s steps(2, end), box-shadow 0.08s steps(2, end), border 0.08s steps(2, end), background 0.08s steps(2, end), color 0.08s steps(2, end), transform 0.08s steps(2, end);
+  outline: none;
+}
+.jrpg-catalog-link .hand {
+  display: none;
+  margin-right: 0.7em;
+  font-size: 1.2em;
+  transition: opacity 0.08s steps(2, end);
+}
+.jrpg-catalog-link:hover .hand,
+.jrpg-catalog-link:focus .hand {
+  display: inline;
+  opacity: 1;
+}
+.jrpg-catalog-link .hand::before {
+  content: "👉";
+  display: inline-block;
+}
+.jrpg-catalog-link:hover, .jrpg-catalog-link:focus {
+  background: #ffe066;
+  color: #232946;
+  border-color: #b6c6e2;
+  filter: drop-shadow(0 0 8px #ffe066) contrast(1.2);
+  box-shadow: 0 0 0 4px #ffe066;
+  outline: 2px solid #ffe066;
+  transform: scale(1.01) skew(-1deg, 0.5deg);
+}
+.jrpg-catalog-link:active {
+  filter: brightness(1.2) contrast(1.4) drop-shadow(0 0 12px #ffe066);
+  box-shadow: 0 0 0 6px #ffe066;
+  border-color: #ffe066;
+}
+@media (max-width: 600px) {
+  .jrpg-window {
+    padding: 1em 0.5em;
+    border-width: 2px;
+  }
+  .jrpg-title {
+    font-size: 1.2em;
+    padding: 0.7em 0.2em 0.6em 0.2em;
+  }
+  .jrpg-catalog-link {
+    font-size: 1em;
+    padding: 0.7em 0.7em;
+  }
+}
+</style>

@@ -1,64 +1,30 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
-import AnnouncementWrapper from "../components/AnnouncementWrapper.astro";
-import { Content } from "../pages/announcements/announcement_1.md"
 ---
 
 <Layout>
-<div class="jrpg-center-screen">
-  <Navbar />
-  <main id="main-content" tabindex="-1">
-    <div class="jrpg-window p-8">
-      <h1 class="jrpg-title">Professor Kostandy Class Announcements</h1>
-      <div class="jrpg-announcement mb-8 animate-announcement" tabindex="0" aria-live="polite">
-	    <AnnouncementWrapper>
-          <Content />
-	    </AnnouncementWrapper>
+  <div class="jrpg-center-screen">
+    <Navbar />
+    <main id="main-content" tabindex="-1">
+      <div class="jrpg-window p-8 max-w-2xl mx-auto mt-8">
+        <h1 class="jrpg-title">Class Information</h1>
+        <nav class="jrpg-mainmenu" aria-label="Class Selection Menu">
+          <a href="/class/csc126" class="jrpg-mainmenu-btn"><span class="hand"></span>CSC 126: Introduction to Computer Science</a>
+          <a href="/class/csc436" class="jrpg-mainmenu-btn"><span class="hand"></span>CSC 436: Advanced Web Development</a>
+        </nav>
       </div>
-    </div>
-  </main>
-</div>
+    </main>
+  </div>
 </Layout>
 
-<style lang="css">
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-.jrpg-center-screen {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.class-menu {
+  width: 100%;
 }
-
-.font-jrpg {
-  font-family: 'Press Start 2P', 'Fira Mono', monospace;
-}
-
-.jrpg-window {
-  background: linear-gradient(180deg, #223a6d 0%, #1a2540 100%);
-  border: 4px solid #b6c6e2;
-  border-radius: 0 0 18px 18px;
-  box-shadow:
-    0 0 0 4px #2e3e5c,
-    0 8px 32px 0 rgba(0,0,0,0.45);
-  color: #e0e6f8;
-  position: relative;
-  margin-top: 0;
-  transition: box-shadow 0.18s, border 0.18s;
-}
-
-@media (max-width: 600px) {
-  .jrpg-window {
-    padding: 1em 0.5em;
-    border-width: 2px;
-  }
-  .jrpg-home-menu {
-    flex-direction: column;
-    gap: 1.2em;
-  }
-}
-
+/* Video game style JRPG menu */
 .jrpg-title {
   font-size: 2.2rem;
   color: #ffe066;
@@ -135,14 +101,6 @@ import { Content } from "../pages/announcements/announcement_1.md"
   box-shadow: 0 0 0 8px #ffe066, 0 8px 32px 0 rgba(0,0,0,0.45);
   border-color: #ffe066;
 }
-.animate-announcement {
-  transition: box-shadow 0.18s, border 0.18s, background 0.18s;
-}
-.animate-announcement:focus, .animate-announcement:hover {
-  box-shadow: 0 4px 24px #b6c6e2;
-  border-color: #ffe066;
-  background: linear-gradient(90deg, #3c4e7c 0%, #2e3e5c 100%);
-}
 @media (max-width: 600px) {
   .jrpg-window {
     padding: 1em 0.5em;
@@ -158,23 +116,14 @@ import { Content } from "../pages/announcements/announcement_1.md"
     padding: 1em 0.5em;
   }
 }
-.animate-announcement {
-  transition: box-shadow 0.18s, border 0.18s, background 0.18s;
-}
-.animate-announcement:focus, .animate-announcement:hover {
-  box-shadow: 0 4px 24px #b6c6e2;
-  border-color: #ffe066;
-  background: linear-gradient(90deg, #3c4e7c 0%, #2e3e5c 100%);
-}
-
-.jrpg-announcement {
-  background: linear-gradient(90deg, #2e3e5c 0%, #3c4e7c 100%);
-  border: 2px solid #b6c6e2;
-  border-radius: 10px;
-  padding: 1em;
-  color: #e0e6f8;
-  font-size: 1em;
-  margin-bottom: 1em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+@media (max-width: 600px) {
+  .jrpg-window, .class-menu {
+    padding: 1em 0.5em;
+    border-width: 2px;
+  }
+  .class-menu-btn {
+    font-size: 1em;
+    padding: 1em 0.25em;
+  }
 }
 </style>
