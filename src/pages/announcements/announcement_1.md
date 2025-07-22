@@ -15,14 +15,8 @@ layout: ../../layouts/Layout.astro
 
 This course is project-based: **6 projects = 90% of your grade**. No tests, no midterms, no finals. Projects 4-6 can be done in teams. All projects are posted at the start; finish early and use class time for other work.
 
-**Weekly Flow:**
-- 30–45 min lecture
-- 30–45 min assignment
-- 30–45 min project work & help
-
 **Class meets:** Mon & Wed, 10 AM – 12 PM
 
-Be kind, help each other, and make something you’re proud of!
 
 **Discord:** [Join here](https://discord.gg/G9DubdtD)  
 **Website:** [kostandycode.netlify.app](https://kostandycode.netlify.app/)
@@ -32,7 +26,7 @@ Be kind, help each other, and make something you’re proud of!
     font-family: 'Press Start 2P', 'Fira Mono', monospace;
     color: #ffe066;
     text-align: center;
-    font-size: 2.1em;
+    font-size: 1.3em;
     letter-spacing: 0.04em;
     margin-bottom: 0.2em;
     text-shadow: 2px 2px 0 #2e3e5c, 0 0 8px #ffe06688;
