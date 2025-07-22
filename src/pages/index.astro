@@ -18,7 +18,7 @@ import { Content } from "../pages/announcements/announcement_1.md"
             <h1 class="jrpg-title typewriter">Professor Kostandy Class Announcements</h1>
             <img src="/assets/code_icon.png" alt="Mascot" class="jrpg-mascot" />
           </div>
-          <div class="jrpg-announcement mb-8 animate-announcement floating-sparkles" tabindex="0" aria-live="polite">
+          <div class="jrpg-announcement mb-8 animate-announcement floating-sparkles max-w-5xl w-full mx-auto px-4 sm:px-8" tabindex="0" aria-live="polite">
             <AnnouncementWrapper>
               <Content />
             </AnnouncementWrapper>
@@ -184,7 +184,7 @@ import { Content } from "../pages/announcements/announcement_1.md"
   transform: scale(1.04) skew(-1deg, 0.5deg);
 }
 .floating-sparkles {
-  position: relative;
+
   overflow: visible;
 }
 .floating-sparkles::before, .floating-sparkles::after {
@@ -306,14 +306,4 @@ import { Content } from "../pages/announcements/announcement_1.md"
   background: linear-gradient(90deg, #3c4e7c 0%, #2e3e5c 100%);
 }
 
-.jrpg-announcement {
-  background: linear-gradient(90deg, #2e3e5c 0%, #3c4e7c 100%);
-  border: 2px solid #b6c6e2;
-  border-radius: 10px;
-  padding: 1em;
-  color: #e0e6f8;
-  font-size: 1em;
-  margin-bottom: 1em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-}
 </style>
