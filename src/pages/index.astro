@@ -6,29 +6,55 @@ import { Content } from "../pages/announcements/announcement_1.md"
 ---
 
 <Layout>
-<div class="jrpg-center-screen">
-  <Navbar />
-  <main id="main-content" tabindex="-1">
-    <div class="jrpg-window p-8">
-      <h1 class="jrpg-title">Professor Kostandy Class Announcements</h1>
-      <div class="jrpg-announcement mb-8 animate-announcement" tabindex="0" aria-live="polite">
-	    <AnnouncementWrapper>
-          <Content />
-	    </AnnouncementWrapper>
-      </div>
+  <div class="jrpg-bg-pixelart">
+    <div class="jrpg-center-screen">
+      <Navbar />
+      <main id="main-content" tabindex="-1">
+        <div class="jrpg-window p-8">
+          <div class="jrpg-title-anim-wrap">
+            <a href="/class" class="jrpg-mainmenu-btn start-btn" aria-label="Start Adventure">
+              <span class="hand"></span>Start Adventure
+            </a>
+            <h1 class="jrpg-title typewriter">Professor Kostandy Class Announcements</h1>
+            <img src="/assets/code_icon.png" alt="Mascot" class="jrpg-mascot" />
+          </div>
+          <div class="jrpg-announcement mb-8 animate-announcement floating-sparkles" tabindex="0" aria-live="polite">
+            <AnnouncementWrapper>
+              <Content />
+            </AnnouncementWrapper>
+          </div>
+        </div>
+      </main>
     </div>
-  </main>
-</div>
+  </div>
 </Layout>
 
 <style lang="css">
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+.jrpg-bg-pixelart {
+  min-height: 100vh;
+  width: 100vw;
+  background: repeating-linear-gradient(135deg, #232946 0 8px, #2e3e5c 8px 16px),
+    url('/assets/astro.svg') repeat top left;
+  background-size: 32px 32px, 120px 120px;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  animation: bg-scroll 60s linear infinite;
+}
+@keyframes bg-scroll {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 256px 256px, 480px 480px; }
+}
 .jrpg-center-screen {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .font-jrpg {
@@ -59,12 +85,44 @@ import { Content } from "../pages/announcements/announcement_1.md"
   }
 }
 
+.jrpg-title-anim-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+  margin-bottom: 1.5em;
+}
+@media (max-width: 700px) {
+  .jrpg-title-anim-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7em;
+    margin-bottom: 1.2em;
+  }
+  .jrpg-title {
+    font-size: 1.1rem;
+    padding: 0.7em 0.3em 0.6em 0.3em;
+    border-width: 2px;
+  }
+  .start-btn {
+    width: 100%;
+    font-size: 1em;
+    padding: 0.7em 0.5em;
+    margin-bottom: 0.7em;
+    border-width: 2px;
+  }
+  .jrpg-mascot {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    border-width: 1.5px;
+  }
+}
 .jrpg-title {
   font-size: 2.2rem;
   color: #ffe066;
   font-family: 'Press Start 2P', 'Fira Mono', monospace;
   text-align: center;
-  margin-bottom: 1.5rem;
   letter-spacing: 0.08em;
   text-shadow: 0 0 8px #ffe066, 0 0 2px #232946, 2px 2px 0 #2e3e5c;
   border: 4px solid #ffe066;
@@ -73,6 +131,87 @@ import { Content } from "../pages/announcements/announcement_1.md"
   box-shadow: 0 0 0 4px #2e3e5c, 0 8px 32px 0 rgba(0,0,0,0.45);
   padding: 1.2em 0.5em 1em 0.5em;
   animation: jrpg-pop 0.5s steps(2, end);
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.typewriter {
+  border-right: 2px solid #ffe066;
+  animation: typing 2.2s steps(32, end), blink-caret 0.7s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ffe066; }
+}
+.jrpg-mascot {
+  width: 72px;
+  height: 72px;
+  image-rendering: pixelated;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #ffe066, 0 2px 8px #232946;
+  background: #232946;
+  border: 2px solid #b6c6e2;
+  margin-left: 0.5em;
+  animation: mascot-float 2.5s ease-in-out infinite alternate;
+}
+@keyframes mascot-float {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-18px) scale(1.04); }
+}
+.start-btn {
+  margin: 0 auto 2em auto;
+  font-size: 1.3em;
+  width: 340px;
+  background: linear-gradient(90deg, #ffe066 0%, #b6c6e2 100%);
+  color: #232946;
+  border: 4px solid #b6c6e2;
+  box-shadow: 0 0 0 4px #ffe066, 0 8px 32px 0 rgba(0,0,0,0.45);
+  text-shadow: none;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  transition: filter 0.08s steps(2, end), box-shadow 0.08s steps(2, end), border 0.08s steps(2, end), background 0.08s steps(2, end), color 0.08s steps(2, end), transform 0.08s steps(2, end);
+}
+.start-btn:hover, .start-btn:focus {
+  background: #232946;
+  color: #ffe066;
+  border-color: #ffe066;
+  box-shadow: 0 0 0 8px #ffe066, 0 8px 32px 0 rgba(0,0,0,0.45);
+  outline: 2px solid #ffe066;
+  transform: scale(1.04) skew(-1deg, 0.5deg);
+}
+.floating-sparkles {
+  position: relative;
+  overflow: visible;
+}
+.floating-sparkles::before, .floating-sparkles::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+  background-image:
+    radial-gradient(circle, #ffe066 0 2px, transparent 2px 100%),
+    radial-gradient(circle, #b6c6e2 0 1.5px, transparent 1.5px 100%),
+    radial-gradient(circle, #fff 0 1px, transparent 1px 100%);
+  background-size: 40px 40px, 60px 60px, 80px 80px;
+  background-position: 0 0, 20px 20px, 10px 10px;
+  opacity: 0.18;
+  animation: sparkles-float 8s linear infinite;
+  z-index: 2;
+}
+.floating-sparkles::after {
+  background-position: 20px 10px, 40px 30px, 30px 50px;
+  opacity: 0.12;
+  animation-duration: 12s;
+}
+@keyframes sparkles-float {
+  0% { background-position: 0 0, 20px 20px, 10px 10px; }
+  100% { background-position: 80px 80px, 60px 60px, 40px 40px; }
 }
 @keyframes jrpg-pop {
   0% { opacity: 0; filter: blur(8px); transform: scale(0.9); }
